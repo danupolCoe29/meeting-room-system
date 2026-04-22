@@ -14,7 +14,7 @@ import socket from "../services/socket";
 
 function BookingPage() {
   // --- States ---
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toLocaleDateString("en-CA");
   const [maxDays, setMaxDays] = useState(30);
   const [searchDate, setSearchDate] = useState(today);
 
