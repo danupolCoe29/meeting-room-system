@@ -62,7 +62,7 @@ const LoginPage = () => {
             <Lock className="text-emerald-600" size={32} />
           </div>
           <h1 className="text-3xl font-black text-gray-900 tracking-tight">
-            Welcome Back
+            MEETING APP
           </h1>
           <p className="text-gray-400 font-medium mt-1">
             เข้าสู่ระบบเพื่อจัดการห้องประชุม
