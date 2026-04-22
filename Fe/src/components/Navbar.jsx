@@ -22,7 +22,7 @@ const Navbar = ({ user, onLogout }) => {
             to="/"
             className="text-xl font-black text-emerald-600 tracking-tighter"
           >
-            ROOM<span className="text-gray-900">APP</span>
+            MEETING<span className="text-gray-900">APP</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
