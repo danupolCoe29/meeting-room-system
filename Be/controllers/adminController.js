@@ -292,6 +292,14 @@ const adminController = {
       GROUP BY r.room_name
     `;
 
+      const roomStatusCountQuery = `
+  SELECT 
+    COUNT(*) FILTER (WHERE s.is_bookable = true) as available,
+    COUNT(*) FILTER (WHERE s.is_bookable = false) as maintenance
+  FROM rooms r
+  JOIN room_status_master s ON r.status_id = s.id
+`;
+
       // 4. 🔥 เพิ่ม/แก้ไขตัวแปรนี้: รายการจองล่าสุด (เอาทุกสถานะเพื่อให้ Admin เห็นความเคลื่อนไหว)
       const recentBookingsQuery = `
       SELECT 
@@ -309,12 +317,14 @@ const adminController = {
       LIMIT 5
     `;
 
-      const [todayRes, overallRes, rooms, recent] = await Promise.all([
-        pool.query(todayStatsQuery),
-        pool.query(overallStatusQuery),
-        pool.query(roomUsageQuery),
-        pool.query(recentBookingsQuery),
-      ]);
+      const [todayRes, overallRes, rooms, recent, roomStatus] =
+        await Promise.all([
+          pool.query(todayStatsQuery),
+          pool.query(overallStatusQuery),
+          pool.query(roomUsageQuery),
+          pool.query(recentBookingsQuery),
+          pool.query(roomStatusCountQuery),
+        ]);
 
       res.json({
         today: {
@@ -337,6 +347,13 @@ const adminController = {
           ),
         },
         room_usage: rooms.rows,
+        room_status: {
+          available: parseInt(roomStatus.rows[0].available),
+          maintenance: parseInt(roomStatus.rows[0].maintenance),
+          total:
+            parseInt(roomStatus.rows[0].available) +
+            parseInt(roomStatus.rows[0].maintenance),
+        },
         recent_bookings: recent.rows,
       });
     } catch (err) {

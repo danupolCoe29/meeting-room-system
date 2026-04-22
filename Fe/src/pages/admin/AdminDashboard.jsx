@@ -142,14 +142,15 @@ const AdminDashboard = () => {
               color="bg-slate-400"
               subtitle="สถิติการยกเลิกสะสม"
             />
+
             <StatCard
-              title="ห้องประชุม"
-              value={stats.room_usage.length}
+              title="ห้องประชุมทั้งหมด"
+              value={stats.room_status?.total || 0}
               icon={<Home />}
               color="bg-blue-100"
               iconColor="text-blue-600"
               textColor="text-blue-900"
-              subtitle="จำนวนห้องที่พร้อมให้บริการ"
+              subtitle={`${stats.room_status?.available} พร้อมให้บริการ | ${stats.room_status?.maintenance} ไม่พร้อมให้บริการ`}
             />
           </div>
         </div>
