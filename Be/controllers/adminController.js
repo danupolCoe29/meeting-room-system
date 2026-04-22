@@ -273,7 +273,7 @@ const adminController = {
       const todayStatsQuery = `
       SELECT status, COUNT(*) as count 
       FROM bookings 
-      WHERE DATE(start_time AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Bangkok') = $1
+      WHERE (start_time AT TIME ZONE 'Asia/Bangkok')::date = (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Bangkok')::date
       GROUP BY status
     `;
 
@@ -310,7 +310,7 @@ const adminController = {
     `;
 
       const [todayRes, overallRes, rooms, recent] = await Promise.all([
-        pool.query(todayStatsQuery, [today]),
+        pool.query(todayStatsQuery),
         pool.query(overallStatusQuery),
         pool.query(roomUsageQuery),
         pool.query(recentBookingsQuery),
