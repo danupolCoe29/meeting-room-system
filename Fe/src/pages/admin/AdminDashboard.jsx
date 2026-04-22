@@ -133,7 +133,7 @@ const AdminDashboard = () => {
               value={stats.overall?.confirmed || 0}
               icon={<Users />}
               color="bg-slate-800"
-              subtitle="ความสำเร็จรวมตั้งแต่เปิดระบบ"
+              subtitle="สถิติการใช้งานห้องสะสม"
             />
             <StatCard
               title="Cancelled ทั้งหมด"
