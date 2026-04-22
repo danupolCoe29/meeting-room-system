@@ -142,17 +142,7 @@ const AdminSettings = () => {
           </div>
 
           {/* --- Footer / Action Bar --- */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-4">
-            <div className="flex items-center gap-3 text-slate-300">
-              <div className="p-2 bg-slate-100 rounded-full">
-                <ShieldCheck size={18} />
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.2em]">
-                Protected by{" "}
-                <span className="text-slate-400">Database Guard</span>
-              </p>
-            </div>
-
+          <div className="flex flex-col md:flex-row justify-end items-center gap-6 px-4">
             <button
               type="submit"
               disabled={loading}
