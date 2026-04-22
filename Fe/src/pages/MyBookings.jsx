@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { History, Inbox, AlertCircle } from "lucide-react";
 import api from "../services/api";
+import socket from "../services/socket";
 import { io } from "socket.io-client";
 import Swal from "sweetalert2";
 import BookingCard from "../components/BookingCard"; // นำเข้าคอมโพเนนต์ที่สร้างใหม่
-
-const socket = io("http://localhost:3000");
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
