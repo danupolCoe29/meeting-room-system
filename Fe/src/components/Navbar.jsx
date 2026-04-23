@@ -25,7 +25,7 @@ const Navbar = ({ user, onLogout }) => {
             MEETING<span className="text-gray-900">APP</span>
           </Link>
 
-          <div className=" items-center gap-6">
+          <div className="flex items-center gap-6">
             <Link
               to="/"
               className={`flex items-center gap-2 font-bold text-sm ${location.pathname === "/" ? "text-emerald-600" : "text-gray-400"}`}
